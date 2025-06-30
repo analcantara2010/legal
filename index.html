@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surpresa 💘</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Fundo animado com brilhinhos ✨ -->
+  <div class="background">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+  </div>
+
+  <div class="container" id="intro">
+    <h1>🎁 Arraste os corações até o baldezinho do amor! 🪣💕</h1>
+
+    <div class="drag-area" id="hearts">
+      <span class="heart" draggable="true">❤️</span>
+      <span class="heart" draggable="true">💗</span>
+      <span class="heart" draggable="true">💖</span>
+      <span class="heart" draggable="true">💕</span>
+      <span class="heart" draggable="true">💘</span>
+    </div>
+
+    <div id="bucket">
+      <div class="fill" id="fill"></div>
+      <span id="bucketText">Arraste aqui</span>
+    </div>
+
+    <button id="signatureButton">Assinar com amor 💌</button>
+  </div>
+
+  <div id="mainMessage">
+    <h2>💖 Oi, minha princesa 💖</h2> <p>Tem dias em que a saudade aperta tanto que tudo o que eu queria era te encontrar logo...</p>
+     <p>e poder te abraçar tão forte, como se o mundo parasse só pra gente existir juntas por um tempo. 🫂</p>
+      <p>Mesmo com a distância, você mora tão pertinho de mim, aqui no meu coração. 💗</p>
+       <p>Promete que vai me esperar pra esse abraço? Porque ele vai chegar, e vai ser ainda melhor do que a gente imagina. 🌙✨</p>
+        <p>sei que nós se apegamos muito rápido uma na outra, mas eu não me arrependo nem um pouco, seu eu pudesse eu fazia de novo, de novo, de novo...</p> 
+    <p> Vc então pouco tempo se tornou uma pessoa muito especial na minha vida.</p>
+     <p>EU TE AMO MUITÃO GAROTA. MAIS DO QUE EU POSSO IMAGINAR...</p>
+    <p style="font-size: 2em;">❤️</p>
+  </div>
+
+  <script>
+    const hearts = document.querySelectorAll('.heart');
+    const bucket = document.getElementById('bucket');
+    const intro = document.getElementById('intro');
+    const message = document.getElementById('mainMessage');
+    const fill = document.getElementById('fill');
+    const bucketText = document.getElementById('bucketText');
+    const signatureButton = document.getElementById('signatureButton');
+    let count = 0;
+    const required = 5;
+
+    signatureButton.style.display = 'none';
+
+    hearts.forEach(heart => {
+      heart.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', '❤️');
+      });
+    });
+
+    bucket.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      bucket.classList.add('hover');
+    });
+
+    bucket.addEventListener('dragleave', () => {
+      bucket.classList.remove('hover');
+    });
+
+    bucket.addEventListener('drop', (e) => {
+      e.preventDefault();
+      count++;
+      bucket.classList.remove('hover');
+
+      const percentage = (count / required) * 100;
+      fill.style.height = `${percentage}%`;
+      bucketText.innerText = `Corações: ${count}/${required}`;
+
+      if (count >= required) {
+        signatureButton.style.display = 'inline-block';
+      }
+    });
+
+    signatureButton.addEventListener('click', () => {
+      intro.style.display = 'none';
+      message.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

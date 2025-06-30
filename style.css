@@ -1,0 +1,174 @@
+/* Fundo mágico com estrelas ✨ */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Comic Sans MS', cursive;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(to bottom right, #ffd6ec, #ffe4f7);
+  overflow: hidden;
+}
+
+.stars, .stars2 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#ffffff88 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: moveStars 60s linear infinite;
+  opacity: 0.3;
+}
+
+.stars2 {
+  background-size: 80px 80px;
+  animation-duration: 100s;
+}
+
+@keyframes moveStars {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-100%); }
+}
+
+/* Conteúdo */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px 40px;
+  text-align: center;
+}
+
+h1 {
+  color: #a60055;
+  margin-bottom: 30px;
+  font-size: 1.5em;
+}
+
+.drag-area {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.heart {
+  font-size: 2.5em;
+  cursor: grab;
+  transition: transform 0.3s;
+}
+
+.heart:active {
+  cursor: grabbing;
+  transform: scale(1.2);
+}
+
+#bucket {
+  width: 120px;
+  height: 150px;
+  border: 3px dashed #ff69b4;
+  border-radius: 15px;
+  position: relative;
+  background-color: #fff0f5;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+  margin-top: 10px;
+}
+
+#bucket.hover {
+  background-color: #ffe0f0;
+}
+
+#fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ff69b4;
+  height: 0%;
+  transition: height 0.5s ease-in-out;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+#bucketText {
+  position: relative;
+  z-index: 1;
+  color: #a60055;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 55px;
+}
+
+/* Botão mágico */
+#signatureButton {
+  margin-top: 20px;
+  padding: 12px 25px;
+  background-color: #ff69b4;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 1.1em;
+  cursor: pointer;
+  box-shadow: 0 5px 10px rgba(255, 105, 180, 0.3);
+  transition: background-color 0.3s, transform 0.2s;
+  display: none;
+}
+
+#signatureButton:hover {
+  background-color: #e055a0;
+  transform: scale(1.05);
+}
+
+/* Mensagem final */
+#mainMessage {
+  display: none;
+  animation: fadeIn 2s ease forwards;
+  padding: 30px 20px;
+  background: white;
+  border-radius: 20px;
+  max-width: 500px;
+  margin: 100px auto 0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  color: #a60055;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 📱 Responsividade */
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 1.3em;
+    padding: 0 10px;
+  }
+
+  .heart {
+    font-size: 3em;
+  }
+
+  #bucket {
+    width: 100px;
+    height: 130px;
+  }
+
+  #signatureButton {
+    font-size: 1em;
+    padding: 10px 20px;
+  }
+
+  #mainMessage {
+    margin-top: 60px;
+  }
+}
